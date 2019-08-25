@@ -5,7 +5,7 @@ from selenium import webdriver
 import re
 import sys
 
-url = 'https://www.indeed.com/jobs?q=Summer&l=Campbell%2C%20CA&start=10&advn=8857166483495170&vjk=a32a93717d9cf9f3' #url of the job search site
+url = 'https://www.indeed.com/jobs?q=software+internshipo&l=Campbell%2C+CA' #url of the job search site
 uCl = ur.urlopen(url)
 page_html = uCl.read()
 uCl.close()
@@ -15,9 +15,11 @@ job_id = []
 
 
 jobListings = page.find("td",{"id": "resultsCol"})
-jobs = jobListings.findAll('div', {"class": "jobsearch-SerpJobCard unifiedRow row result"})
+jobs = jobListings.findAll("div", {"class": "jobsearch-SerpJobCard unifiedRow row result"})
+print(len(jobs))
 for job in jobs:
-    job_id.append(job['id'])
+    if job.find("div", {"class":"iaWrapper"}):
+        job_id.append(job['id'])
 print(job_id)
 
 
