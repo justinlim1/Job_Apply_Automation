@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="cca12004-d33c-4f2a-9f8d-a3e0ceca807e" name="Default Changelist" comment="Find the listed jobs on a linkedin page and make a list of all the job ids">
+    <list default="true" id="cca12004-d33c-4f2a-9f8d-a3e0ceca807e" name="Default Changelist" comment="Find the listed jobs on a linkedin page and make a list of all the job ids with easy apply">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Job Apply.py" beforeDir="false" afterPath="$PROJECT_DIR$/Job Apply.py" afterDir="false" />
     </list>
@@ -16,8 +16,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Job Apply.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="204">
-              <caret line="12" column="11" lean-forward="true" selection-start-line="12" selection-start-column="11" selection-end-line="12" selection-end-column="11" />
+            <state relative-caret-position="266">
+              <caret line="19" column="13" selection-start-line="19" selection-start-column="13" selection-end-line="19" selection-end-column="13" />
               <folding>
                 <element signature="e#1#38#0" expanded="true" />
               </folding>
@@ -54,9 +54,9 @@
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds">
-    <option name="x" value="302" />
-    <option name="y" value="85" />
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="317" />
+    <option name="y" value="-13" />
     <option name="width" value="1400" />
     <option name="height" value="1000" />
   </component>
@@ -174,7 +174,7 @@
       <workItem from="1566527006111" duration="2200000" />
       <workItem from="1566602348477" duration="1157000" />
       <workItem from="1566704528341" duration="8954000" />
-      <workItem from="1566771159973" duration="587000" />
+      <workItem from="1566771159973" duration="1413000" />
     </task>
     <task id="LOCAL-00001" summary="starting variables and imports">
       <created>1566526739014</created>
@@ -197,14 +197,21 @@
       <option name="project" value="LOCAL" />
       <updated>1566713034927</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Find the listed jobs on a linkedin page and make a list of all the job ids with easy apply">
+      <created>1566771836813</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1566771836813</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="22905000" />
+    <option name="totallyTimeSpent" value="23731000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="302" y="85" width="1400" height="1000" extended-state="0" />
+    <frame x="178" y="238" width="1400" height="1000" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.32985073" />
@@ -246,7 +253,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="starting variables and imports" />
     <MESSAGE value="Find the listed jobs on a linkedin page and make a list of all the job ids" />
-    <option name="LAST_COMMIT_MESSAGE" value="Find the listed jobs on a linkedin page and make a list of all the job ids" />
+    <MESSAGE value="Find the listed jobs on a linkedin page and make a list of all the job ids with easy apply" />
+    <option name="LAST_COMMIT_MESSAGE" value="Find the listed jobs on a linkedin page and make a list of all the job ids with easy apply" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/JobApply$Job_Apply.coverage" NAME="Job Apply Coverage Results" MODIFIED="1566771747808" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
@@ -254,8 +262,8 @@
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/Job Apply.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="12" column="11" lean-forward="true" selection-start-line="12" selection-start-column="11" selection-end-line="12" selection-end-column="11" />
+        <state relative-caret-position="266">
+          <caret line="19" column="13" selection-start-line="19" selection-start-column="13" selection-end-line="19" selection-end-column="13" />
           <folding>
             <element signature="e#1#38#0" expanded="true" />
           </folding>
