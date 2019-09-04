@@ -3,7 +3,9 @@ from bs4 import BeautifulSoup as soup
 import urllib.request as ur
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
-import time
+from tkinter import Tk
+from tkinter.filedialog import askopenfilename
+from time import sleep
 import re
 import sys
 
@@ -24,6 +26,7 @@ class jobApply:
         self.blacklist_words = []
         self.whitelist_words = ["intern", "internship", "software"]  # List of required words in job title
         self.get_html()
+        self. resumePath = ""
 
     def get_html(self): #parse html from given url
         uCl = ur.urlopen(self.url)
@@ -43,26 +46,50 @@ class jobApply:
                     self.job_urls.append(self.mainUrl + link['href']) #append url of each job to list
         #print(self.job_urls)
 
-    def jobPage(self):
-        for url in self.job_urls:
-            self.driver.get(url)
-            time.sleep(5)
+    def jobPage(self, url):
 
+
+        self.driver.get(url)
+        sleep(1)
+        self.driver.find_element_by_class_name("jobsearch-IndeedApplyButton-contentWrapper").click()
+        sleep(1)
+        self.driver.switch_to.frame(1)
+        sleep(1)
+        self.driver.switch_to.frame(0)
+        sleep(1)
+        self.driver.find_element_by_class_name("ia-ResumeMessage-applyLink").click()
+        sleep(1)
+        uploadFile = self.driver.find_element_by_class_name("ia-BrowserDefaultFilePicker-control").click()
+        sleep(1)
+        uploadFile.sendKeys(self.resumePath)
+
+
+
+    def chooseResume(self):
+        Tk().withdraw()
+        self.resumePath = askopenfilename()
+        print(self.resumePath)
     def login(self,email,password):
         self.driver.get('https://secure.indeed.com/account/login?hl=en_US&co=US&continue=https%3A%2F%2Fwww.indeed.com%2F&tmpl=desktop&service=&from=gnav-util-homepage&_ga=2.210805846.21291967.1566709415-1824541224.1566527853')
         self.driver.find_element_by_name("__email").send_keys(email)
-        time.sleep(1)
+        sleep(1)
         self.driver.find_element_by_name("__password").send_keys(password)
-        time.sleep(1)
+        sleep(1)
         self.driver.find_element_by_xpath("//button[@id='login-submit-button']").click()
-
-
+        sleep(1)
 
 
     def apply(self):
         self.login("justinlim8@gmail.com", "gzzc2g93")
         #self.getJobList()
-        #self.jobPage()
+        self.chooseResume()
+        self.jobPage("https://www.indeed.com/viewjob?jk=80075835c181f85b&q=software+internship&l=Campbell%2C+CA&tk=1dj8simpabqlc801&from=web&vjs=3")
+
+
+    # def uploadResume(self):
+    #     bool_upload_resume = input("Would you like to upload a new resume?")
+    #     if bool_upload_resume == True:
+
 
 
 url ="https://www.indeed.com/q-software-internshipo-l-Campbell,-CA-jobs.html?advn=7983672015724620&vjk=d86b7d62ea5e6c88"
