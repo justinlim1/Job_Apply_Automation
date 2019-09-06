@@ -30,7 +30,7 @@ class jobApply:
         self.blacklist_words = []
         self.whitelist_words = ["intern", "internship", "software"]  # List of required words in job title
         self.resumePath = ""
-
+        self.phoneNumber = "4086655117"
 
     def find_page(self, url):
         self.driver.get(url)
@@ -56,37 +56,33 @@ class jobApply:
         jobListings = page.find("ul", {"class": "jobs-search-results__list artdeco-list"})
 
         jobs = jobListings.findAll("div", {"data-control-name": "A_jobssearch_job_result_click"})
-        print(jobs)
+
         for job in jobs:
 
             self.job_id.append(job['data-job-id'].split(":")[3])  # append job id
             self.job_urls.append("https://www.linkedin.com" + job.find("a", {"data-control-name":"A_jobssearch_job_result_click"})['href'])
-        # for job in jobListings:
-        #
-        #     self.job_id.append(job.get_attribute('data-job-id').split(":")[3]) #append job id
-        #     jobLink = job.find_element_by_xpath('//a[@data-control-id]')
-        #
-        #     self.job_urls.append(jobLink.get_attribute("href")) #append url of each job to list
 
         print(self.job_urls)
 
 
+
+
+
     def jobPage(self, url):
 
-
+        self.driver.set_window_position(0, 0)
+        self.driver.maximize_window()
         self.driver.get(url)
         sleep(1)
-        self.driver.find_element_by_class_name("jobsearch-IndeedApplyButton-contentWrapper").click()
+        self.driver.find_element_by_xpath("//button[@data-control-name='jobdetails_topcard_inapply']").click()
         sleep(1)
-        self.driver.switch_to.frame(1)
+        uploadFile = self.driver.find_element_by_id("file-browse-input")
         sleep(1)
-        self.driver.switch_to.frame(0)
+        uploadFile.send_keys(self.resumePath)
         sleep(1)
-        self.driver.find_element_by_class_name("ia-ResumeMessage-applyLink").click()
+        self.driver.find_element_by_xpath("//input[@id='apply-form-phone-input']").send_keys(self.phoneNumber)
         sleep(1)
-        uploadFile = self.driver.find_element_by_class_name("ia-BrowserDefaultFilePicker-control").click()
-        sleep(1)
-        uploadFile.sendKeys(self.resumePath)
+        self.driver.find_element_by_xpath("//button[@class='jobs-apply-form__submit-button artdeco-button artdeco-button--3 ']").click()
 
     def load_page(self):
         scroll_page = 0
@@ -118,10 +114,8 @@ class jobApply:
     def apply(self):
         self.login("justinlim8@gmail.com", "201404")
         self.getJobList()
-        #self.chooseResume()
-        #self.jobPage("https://www.indeed.com/viewjob?jk=80075835c181f85b&q=software+internship&l=Campbell%2C+CA&tk=1dj8simpabqlc801&from=web&vjs=3")
-
-
+        self.chooseResume()
+        self.jobPage("https://www.linkedin.com/jobs/view/1481475066/?eBP=JOB_SEARCH_ORGANIC&refId=5af40094-07c1-4bcc-9fa2-5878723a1904&trk=d_flagship3_search_srp_jobs")
 
     # def uploadResume(self):
     #     bool_upload_resume = input("Would you like to upload a new resume?")
