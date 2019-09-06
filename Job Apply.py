@@ -9,6 +9,7 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.keys import Keys
+import csv
 import re
 import sys
 
@@ -31,7 +32,13 @@ class jobApply:
         self.keywords = keyword #job title/keywords user is searching for
         self.location = location #location of jobs user is searching for
         self.pageNum = 0
+        self.csvfile = open('jobs.csv', 'w')
+        self.filewriter = csv.writer(self.csvfile, delimiter=',',
+                                    quotechar='|', quoting=csv.QUOTE_MINIMAL)
+        self.filewriter.writerow(['Job Title', 'Company', 'location', 'Seniority Level', 'Employment Type', 'Job URL'])
 
+    def __del__(self):
+        self.csvfile.close()
 
     def getJobList(self):
 
@@ -108,6 +115,8 @@ class jobApply:
         self.getJobList()
         for i in self.job_urls:
             self.jobPage(i)
+            self.getJobInfo(i)
+
 
     def getNextPage(self):
         url = "https://www.linkedin.com/jobs/search/?f_LF=f_AL&keywords=" + self.keywords + "&location=" + self.location + "&start=" + str(
@@ -115,9 +124,15 @@ class jobApply:
         self.driver.get(url)
         return url
 
-    # def uploadResume(self):
-    #     bool_upload_resume = input("Would you like to upload a new resume?")
-    #     if bool_upload_resume == True:
+    def getJobInfo(self, url):
+        title = self.driver.find_element_by_xpath("//h1[@class='jobs-top-card__job-title t-24']").text
+        company = self.driver.find_element_by_xpath("//a[@data-control-name='company_link']").text
+        location = self.driver.find_element_by_xpath("//span[@class='jobs-top-card__bullet']").text
+        level = self.driver.find_element_by_xpath("//p[@class='jobs-box__body js-formatted-exp-body']").text
+        type = self.driver.find_element_by_xpath("//p[@class='jobs-box__body js-formatted-employment-status-body']").text
+        print(title, company, location, level, type)
+
+        self.filewriter.writerow([title, company, location, level, type, url])
 
 
 
