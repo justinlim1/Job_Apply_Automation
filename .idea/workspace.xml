@@ -16,8 +16,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Job Apply.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="272">
-              <caret line="85" lean-forward="true" selection-start-line="85" selection-end-line="85" />
+            <state relative-caret-position="-1205">
+              <caret line="28" column="45" selection-start-line="28" selection-start-column="45" selection-end-line="28" selection-end-column="45" />
               <folding>
                 <element signature="e#1#38#0" expanded="true" />
               </folding>
@@ -55,7 +55,7 @@
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="63" />
+    <option name="x" value="-23" />
     <option name="y" value="-15" />
     <option name="width" value="1915" />
     <option name="height" value="1039" />
@@ -182,7 +182,7 @@
       <workItem from="1567561832371" duration="603000" />
       <workItem from="1567564200915" duration="11407000" />
       <workItem from="1567628190468" duration="13066000" />
-      <workItem from="1567718596591" duration="4023000" />
+      <workItem from="1567718596591" duration="8905000" />
     </task>
     <task id="LOCAL-00001" summary="starting variables and imports">
       <created>1566526739014</created>
@@ -254,11 +254,25 @@
       <option name="project" value="LOCAL" />
       <updated>1567651950429</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="Completed resume uploading and job applying">
+      <created>1567732353432</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1567732353433</updated>
+    </task>
+    <task id="LOCAL-00012" summary="added grabbing jobs off multiple pages">
+      <created>1567751251168</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1567751251168</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="78871000" />
+    <option name="totallyTimeSpent" value="83753000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -270,15 +284,15 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="2188" y="0" width="1915" height="1039" extended-state="0" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.18814017" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.18603411" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.3852097" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.37811485" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.3900325" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -319,16 +333,18 @@
     <MESSAGE value="added file upload from local machine and simple applying" />
     <MESSAGE value="switched site to linkedin" />
     <MESSAGE value="fixed finding jobs and retrieving job list/urls" />
-    <option name="LAST_COMMIT_MESSAGE" value="fixed finding jobs and retrieving job list/urls" />
+    <MESSAGE value="Completed resume uploading and job applying" />
+    <MESSAGE value="added grabbing jobs off multiple pages" />
+    <option name="LAST_COMMIT_MESSAGE" value="added grabbing jobs off multiple pages" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/JobApply$Job_Apply.coverage" NAME="Job Apply Coverage Results" MODIFIED="1567732273851" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/JobApply$Job_Apply.coverage" NAME="Job Apply Coverage Results" MODIFIED="1567751206589" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/Job Apply.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="85" lean-forward="true" selection-start-line="85" selection-end-line="85" />
+        <state relative-caret-position="-1205">
+          <caret line="28" column="45" selection-start-line="28" selection-start-column="45" selection-end-line="28" selection-end-column="45" />
           <folding>
             <element signature="e#1#38#0" expanded="true" />
           </folding>

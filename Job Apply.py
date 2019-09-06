@@ -17,20 +17,19 @@ MAX_JOBS = 500
 
 class jobApply:
 
-    def __init__(self, page_url, keyword, location):
+    def __init__(self, keyword="Software Internship", location="United States"):
         self.options = Options()
         # self.options.add_argument("--headless")
-        self.url = page_url
         self.mainUrl = "http://linkedin.com"
         self.job_id = []  # list of job ids
         self.job_urls = []  # list of job urls
         self.driver = webdriver.Chrome(options=self.options)
         self.blacklist_words = []
         self.whitelist_words = ["intern", "internship", "software"]  # List of required words in job title
-        self.resumePath = ""
+        self.resumePath = self.chooseResume()
         self.phoneNumber = "4086655117"
-        self.keywords = keyword
-        self.location = location
+        self.keywords = keyword #job title/keywords user is searching for
+        self.location = location #location of jobs user is searching for
         self.pageNum = 0
 
 
@@ -39,8 +38,8 @@ class jobApply:
         # self.driver.set_window_position(0, 0)
         # self.driver.maximize_window()
         self.getNextPage()
-        page = self.load_page()
-        self.jobResults = int(self.driver.find_element_by_xpath("//div[@class='t-12 t-black--light t-normal']").text.split()[0])
+        page = self.load_page() #load html of all jobs on page by scrolling down
+        self.jobResults = int(self.driver.find_element_by_xpath("//div[@class='t-12 t-black--light t-normal']").text.split()[0]) #get number of jobs
 
         while len(self.job_urls) < MAX_JOBS and len(self.job_urls) != self.jobResults:
 
@@ -52,12 +51,16 @@ class jobApply:
                 self.job_id.append(job['data-job-id'].split(":")[3])  # append job id
                 self.job_urls.append(
                     "https://www.linkedin.com" + job.find("a", {"data-control-name": "A_jobssearch_job_result_click"})[
-                        'href'])
+                        'href']) #append url of main job page on Linkedin
 
 
             self.pageNum += 25
             self.getNextPage()
             page = self.load_page()
+
+        #remove duplicates
+        self.job_urls = list(dict.fromkeys(self.job_urls))
+        self.job_id = list(dict.fromkeys(self.job_id))
 
     def jobPage(self, url):
 
@@ -69,7 +72,7 @@ class jobApply:
         sleep(1)
         uploadFile = self.driver.find_element_by_id("file-browse-input")
         sleep(1)
-        uploadFile.send_keys(self.resumePath)
+        uploadFile.send_keys(self.resumePath) #upload resume
         sleep(1)
         self.driver.find_element_by_xpath("//input[@id='apply-form-phone-input']").send_keys(self.phoneNumber)
         sleep(1)
@@ -88,8 +91,8 @@ class jobApply:
 
     def chooseResume(self):
         Tk().withdraw()
-        self.resumePath = askopenfilename()
-        print(self.resumePath)
+        self.resumePath = askopenfilename() #find resume path on local machine
+
 
     def login(self, email, password):
         self.driver.get('https://www.linkedin.com/login?trk=guest_homepage-basic_nav-header-signin')
@@ -103,8 +106,8 @@ class jobApply:
     def apply(self):
         self.login("justinlim8@gmail.com", "201404")
         self.getJobList()
-        # self.chooseResume()
-        # self.jobPage("https://www.linkedin.com/jobs/view/1481475066/?eBP=JOB_SEARCH_ORGANIC&refId=5af40094-07c1-4bcc-9fa2-5878723a1904&trk=d_flagship3_search_srp_jobs")
+        for i in self.job_urls:
+            self.jobPage(i)
 
     def getNextPage(self):
         url = "https://www.linkedin.com/jobs/search/?f_LF=f_AL&keywords=" + self.keywords + "&location=" + self.location + "&start=" + str(
@@ -117,6 +120,6 @@ class jobApply:
     #     if bool_upload_resume == True:
 
 
-url = "https://www.linkedin.com/jobs/search/?f_LF=f_AL&keywords=software%20internship&location=San%20Jose%2C%20California%2C%20United%20States"
-bot = jobApply(url, "software internship", "san jose")
+
+bot = jobApply("software internship", "san jose")
 bot.apply()
