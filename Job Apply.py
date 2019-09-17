@@ -111,7 +111,7 @@ class jobApply:
         sleep(1)
 
     def apply(self):
-        self.login("justinlim8@gmail.com", "201404")
+        self.login("pm1999181@gmail.com", "gzzc2g93")
         self.getJobList()
         for i in self.job_urls:
             self.jobPage(i)
