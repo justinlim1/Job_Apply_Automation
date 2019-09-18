@@ -1,55 +1,37 @@
 from tkinter import *
 from tkinter.filedialog import askopenfilename
 
+
+# from https://stackoverflow.com/questions/7546050/switch-between-two-frames-in-tkinter
+
 class GUI(Frame):
     def __init__(self, *args, **kwargs):
         Frame.__init__(self, *args, **kwargs)
         self.fCounter = 0
-        f1 = LoginFrame(self)
-        f2 = ResumeFrame(self)
-        f3 = SearchFrame(self)
-        self.frames=[]
-        self.frames.append(f1)
-        self.frames.append(f2)
-        self.frames.append(f3)
-
 
         container = Frame(self)
-        buttonFrame = Frame(self)
-
         container.pack(side="top", fill="both", expand=True)
-        buttonFrame.pack(side="bottom", fill=X, expand=False)
+        container.grid_rowconfigure(0, weight=1)
+        container.grid_columnconfigure(0, weight=1)
 
+        self.frames = {}
 
-        f1.place(in_=container, x=0, y=0, relwidth=1, relheight=0.5)
-        f2.place(in_=container, x=0, y=0, relwidth=1, relheight=0.5)
-        f3.place(in_=container, x=0, y=0, relwidth=1, relheight=0.5)
+        for F in (LoginFrame, ResumeFrame, SearchFrame):
+            page_name = F.__name__
+            frame = F(parent=container, controller=self)
+            self.frames[page_name] = frame
 
+            # put all of the pages in the same location;
+            # the one on the top of the stacking order
+            # will be the one that is visible.
+            frame.grid(row=0, column=0, sticky="nsew")
 
-        self.backB = Button(buttonFrame, text="Back", command=self.back)
-        nextB = Button(buttonFrame, text="Next", command=self.show)
-        nextB.pack(side="right")
+        self.show_frame("LoginFrame")
 
-
-
-
-
-
-        f1.lift()
-    def show(self):
-        self.fCounter += 1
-        nextF = self.frames[self.fCounter]
-        if self.fCounter == 1:
-            self.backB.pack(side="right")
-
-        nextF.lift()
-    def back(self):
-        self.fCounter -= 1
-        nextF = self.frames[self.fCounter]
-        if self.fCounter == 0:
-            self.backB.pack_forget()
-        nextF.lift()
-
+    def show_frame(self, page_name):
+        '''Show a frame for the given page name'''
+        frame = self.frames[page_name]
+        frame.tkraise()
 
 
 class Page(Frame):
@@ -59,53 +41,66 @@ class Page(Frame):
     def show(self):
         self.lift()
 
-class LoginFrame(Page):
-    def __init__(self,*args, **kwargs):
 
-        Page.__init__(self, *args, **kwargs)
-        self.emailLabel = Label(self,text="Email:")
-        self.passwordLabel = Label(self,text="Password:")
+class LoginFrame(Frame):
+    def __init__(self, parent, controller):
+        Frame.__init__(self, parent)
+        self.controller = controller
+        self.emailLabel = Label(self, text="Email:")
+        self.passwordLabel = Label(self, text="Password:")
         self.emailEntry = Entry(self)
         self.passwordEntry = Entry(self)
 
-        self.emailLabel.grid(row=0, column=0,sticky=E)
+        self.emailLabel.grid(row=0, column=0, sticky=E)
         self.passwordLabel.grid(row=1, column=0, sticky=E)
         self.emailEntry.grid(row=0, column=1)
         self.passwordEntry.grid(row=1, column=1)
+        button = Button(self, text="Next", command=self.next)
+        button.grid()
 
     def next(self):
         self.email = self.emailEntry.get()
-        self.password = self.password.get()
+        self.password = self.passwordEntry.get()
+        self.controller.show_frame("ResumeFrame")
 
 
 class ResumeFrame(Page):
-    def __init__(self,*args, **kwargs):
-        Page.__init__(self, *args, **kwargs)
+    def __init__(self, parent, controller):
+        Frame.__init__(self, parent)
+        self.controller = controller
 
-
-        chooseResume = Button(self,text="Choose Resume",bg= "red",foreground = "blue", command=self.chooseFramePath)
-        chooseResume.pack()
-
+        chooseResume = Button(self, text="Choose Resume", bg="red", foreground="blue", command=self.chooseFramePath)
+        chooseResume.grid()
+        button = Button(self, text="Next", command=lambda: controller.show_frame("SearchFrame"))
+        button.grid()
+        back = Button(self, text="Back", command=self.back)
+        back.grid()
 
     def chooseFramePath(self):
         self.resumePath = askopenfilename()
 
+        self.pathName = Label(text=self.resumePath)
 
-        pathName = Label(text=self.resumePath)
-        pathName.pack()
+        self.pathName.grid()
+
+    def back(self):
+        self.pathName.grid_forget()
+        self.controller.show_frame("LoginFrame")
 
 
-class SearchFrame(Page):
-    def __init__(self,*args, **kwargs):
-        Page.__init__(self, *args, **kwargs)
-        label = Label(self, text="This is page 3")
-        label.pack(side="top", fill="both", expand=True)
+class SearchFrame(Frame):
+    def __init__(self, parent, controller):
+        Frame.__init__(self, parent)
+        self.controller = controller
+        label = Label(self, text="This is page 2")
+        label.pack(side="top", fill="x", pady=10)
+        button = Button(self, text="Go to the start page", command=lambda: controller.show_frame("StartPage"))
 
 
 if __name__ == "__main__":
     root = Tk()
     main = GUI(root)
     root.title("Linkedin Easy Apply")
-    main.pack(side="top", fill="both", expand=True)
+    main.grid()
     root.wm_geometry("300x130")
     root.mainloop()
