@@ -4,6 +4,7 @@
     <list default="true" id="cca12004-d33c-4f2a-9f8d-a3e0ceca807e" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Bot_GUI.py" beforeDir="false" afterPath="$PROJECT_DIR$/Bot_GUI.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Job Apply.py" beforeDir="false" afterPath="$PROJECT_DIR$/Job Apply.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -58,7 +59,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.Bot_GUI">
+  <component name="RunManager" selected="Python.Job Apply">
     <configuration name="Bot_GUI" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="JobApply" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -132,8 +133,8 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.Bot_GUI" />
         <item itemvalue="Python.Job Apply" />
+        <item itemvalue="Python.Bot_GUI" />
       </list>
     </recent_temporary>
   </component>
@@ -171,7 +172,8 @@
       <workItem from="1568772661768" duration="2756000" />
       <workItem from="1568777527428" duration="3000" />
       <workItem from="1568777722894" duration="3380000" />
-      <workItem from="1568782224520" duration="2300000" />
+      <workItem from="1568782224520" duration="2599000" />
+      <workItem from="1568837596588" duration="2549000" />
     </task>
     <task id="LOCAL-00001" summary="starting variables and imports">
       <created>1566526739014</created>
@@ -278,7 +280,14 @@
       <option name="project" value="LOCAL" />
       <updated>1568777935730</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="Finished implementing GUI(not functional with main code)">
+      <created>1568786311519</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1568786311519</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TodoView">
@@ -331,10 +340,12 @@
     <MESSAGE value="started implementing GUI" />
     <MESSAGE value="Implemented multiple pages of GUI including login and resume selection" />
     <MESSAGE value="Added traversing back and forth between pages" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added traversing back and forth between pages" />
+    <MESSAGE value="Finished implementing GUI(not functional with main code)" />
+    <option name="LAST_COMMIT_MESSAGE" value="Finished implementing GUI(not functional with main code)" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/JobApply$Job_Apply.coverage" NAME="Job Apply Coverage Results" MODIFIED="1567751206589" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/Job_Apply_Automation$Bot_GUI.coverage" NAME="Bot_GUI Coverage Results" MODIFIED="1568786279683" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/Job_Apply_Automation$Bot_GUI.coverage" NAME="Bot_GUI Coverage Results" MODIFIED="1568837982888" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/Job_Apply_Automation$Job_Apply.coverage" NAME="Job Apply Coverage Results" MODIFIED="1568846198395" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>

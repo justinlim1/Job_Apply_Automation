@@ -5,13 +5,13 @@ import os
 
 
 
-# from https://stackoverflow.com/questions/7546050/switch-between-two-frames-in-tkinter
+#from https://stackoverflow.com/questions/7546050/switch-between-two-frames-in-tkinter
 
 
 
-class GUI(Frame):
+class GUI(Tk):
     def __init__(self, *args, **kwargs):
-        Frame.__init__(self, *args, **kwargs)
+        Tk.__init__(self, *args, **kwargs)
         self.fCounter = 0
         self.title_font = Font(family='Helvetica', size=18, weight="bold", slant="italic")
         self.subtitle_font = Font(family='Helvetica', size=12, weight="bold", slant="italic")
@@ -114,7 +114,7 @@ class SearchFrame(Frame):
         self.locationEntry.grid(row=1, column=1)
 
         self.buttonFrame.grid(row=2, column=1)
-        button = Button(self.buttonFrame, text="Apply")
+        button = Button(self.buttonFrame, text="Apply", command=self.apply)
         button.grid(column=2,row=1,pady=30)
         back = Button(self.buttonFrame, text="Back", command=self.back)
         back.grid(column=1,row=1,pady=30,padx=(90,0))
@@ -122,11 +122,10 @@ class SearchFrame(Frame):
     def back(self):
         self.controller.show_frame("ResumeFrame")
 
-if __name__ == "__main__":
-    root = Tk()
-    main = GUI(root)
-    root.title("Linkedin Easy Apply")
+    def apply(self):
 
-    main.grid()
-    root.wm_geometry("300x130")
-    root.mainloop()
+        self.keywords = self.keywordsEntry.get()
+        self.location = self.locationEntry.get()
+        self.controller.destroy()
+        self.destroy()
+
