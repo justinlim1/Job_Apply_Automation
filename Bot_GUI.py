@@ -1,16 +1,23 @@
 from tkinter import *
+from tkinter.font import Font
 from tkinter.filedialog import askopenfilename
+import os
+
 
 
 # from https://stackoverflow.com/questions/7546050/switch-between-two-frames-in-tkinter
+
+
 
 class GUI(Frame):
     def __init__(self, *args, **kwargs):
         Frame.__init__(self, *args, **kwargs)
         self.fCounter = 0
+        self.title_font = Font(family='Helvetica', size=18, weight="bold", slant="italic")
+        self.subtitle_font = Font(family='Helvetica', size=12, weight="bold", slant="italic")
 
         container = Frame(self)
-        container.pack(side="top", fill="both", expand=True)
+        container.grid(row=10)
         container.grid_rowconfigure(0, weight=1)
         container.grid_columnconfigure(0, weight=1)
 
@@ -54,9 +61,9 @@ class LoginFrame(Frame):
         self.emailLabel.grid(row=0, column=0, sticky=E)
         self.passwordLabel.grid(row=1, column=0, sticky=E)
         self.emailEntry.grid(row=0, column=1)
-        self.passwordEntry.grid(row=1, column=1)
+        self.passwordEntry.grid(row=1, column=1, sticky=E)
         button = Button(self, text="Next", command=self.next)
-        button.grid()
+        button.grid(row=15, column=1, sticky=E,pady=30)
 
     def next(self):
         self.email = self.emailEntry.get()
@@ -68,23 +75,25 @@ class ResumeFrame(Page):
     def __init__(self, parent, controller):
         Frame.__init__(self, parent)
         self.controller = controller
-
+        self.resumePath = None
         chooseResume = Button(self, text="Choose Resume", bg="red", foreground="blue", command=self.chooseFramePath)
-        chooseResume.grid()
+        chooseResume.grid(row=0,column=0)
+
         button = Button(self, text="Next", command=lambda: controller.show_frame("SearchFrame"))
-        button.grid()
+        button.grid(row=10, column=2,sticky=E,pady=65)
         back = Button(self, text="Back", command=self.back)
-        back.grid()
+        back.grid(row=10,  column=1,sticky=E,pady=65,padx=(73,0))
 
     def chooseFramePath(self):
         self.resumePath = askopenfilename()
 
-        self.pathName = Label(text=self.resumePath)
+        self.pathName = Label(self,text=os.path.basename(self.resumePath))
 
-        self.pathName.grid()
-
+        self.pathName.grid(row=0, column=1)
+        self.update()
     def back(self):
-        self.pathName.grid_forget()
+        if self.resumePath:
+            self.pathName.grid_forget()
         self.controller.show_frame("LoginFrame")
 
 
@@ -92,15 +101,32 @@ class SearchFrame(Frame):
     def __init__(self, parent, controller):
         Frame.__init__(self, parent)
         self.controller = controller
-        label = Label(self, text="This is page 2")
-        label.pack(side="top", fill="x", pady=10)
-        button = Button(self, text="Go to the start page", command=lambda: controller.show_frame("StartPage"))
+        self.keywordsLabel = Label(self, text="Keywords:")
+        self.locationLabel = Label(self, text="Location:")
+        self.keywordsEntry = Entry(self)
+        self.locationEntry = Entry(self)
+        self.buttonFrame = Frame(self)
 
+
+        self.keywordsLabel.grid(row=0, column=0, sticky=E)
+        self.locationLabel.grid(row=1, column=0, sticky=E)
+        self.keywordsEntry.grid(row=0, column=1)
+        self.locationEntry.grid(row=1, column=1)
+
+        self.buttonFrame.grid(row=2, column=1)
+        button = Button(self.buttonFrame, text="Apply")
+        button.grid(column=2,row=1,pady=30)
+        back = Button(self.buttonFrame, text="Back", command=self.back)
+        back.grid(column=1,row=1,pady=30,padx=(90,0))
+
+    def back(self):
+        self.controller.show_frame("ResumeFrame")
 
 if __name__ == "__main__":
     root = Tk()
     main = GUI(root)
     root.title("Linkedin Easy Apply")
+
     main.grid()
     root.wm_geometry("300x130")
     root.mainloop()
