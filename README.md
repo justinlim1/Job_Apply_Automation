@@ -14,10 +14,11 @@ Basic Functionalities
 - Ask the user for preference of key words, blacklisted words, location, salary, job level etc...
 - Upload resume and cover letter to Linkedin
 - Display the info of every job the tool has applied to
+- UI
 
 Additional features to work on
 
-- UI
+- Error checking and exceptions
 - Custom cover letters/emails
 - Allow user to choose which jobs to apply for
 
